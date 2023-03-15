@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
 
 function Home({ categories }) {
@@ -18,26 +18,26 @@ function Home({ categories }) {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 export async function getStaticProps() {
   try {
-    const response = await fetch('https://api.escuelajs.co/api/v1/categories');
-    const data = await response.json();
+    const response = await fetch('https://api.escuelajs.co/api/v1/categories')
+    const data = await response.json()
     return {
       props: {
         categories: data,
       },
-    };
+    }
   } catch (error) {
     console.error(error);
     return {
       props: {
         categories: [],
       },
-    };
+    }
   }
 }
 
-export default Home;
+export default Home
