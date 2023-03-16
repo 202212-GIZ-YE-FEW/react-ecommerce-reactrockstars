@@ -21,20 +21,32 @@ const Navbar = ({ categories }) => {
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h8m-8 6h16" />
         </svg>
       </a>
-      <img className="logo" src="https://cdn.shopify.com/s/files/1/0689/1443/files/CLOSCA-LOGO-WEB-BLACK_130x@2x.png?v=1559116993" />
-      <div className="header-menu flex px-10">
-        <a href="#" className="transform transition-transform duration-500 ease-in-out hover:translate-x-2">
-          Mask
-        </a>
-        <a href="#" className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
-          Helmet
-        </a>
-        <a href="#" className="transform transition-transform duration-500 ease-in-out delay-200 hover:translate-x-2">
-          Bottle
-        </a>
-        <a href="#" className="transform transition-transform duration-500 ease-in-out delay-300 hover:translate-x-2">
-          Accessories
-        </a>
+      <Link href="/">
+  <div>
+  <img className="logo" src="https://cdn.shopify.com/s/files/1/0689/1443/files/CLOSCA-LOGO-WEB-BLACK_130x@2x.png?v=1559116993" width="350" height="350" />
+ </div>
+</Link> <div className="header-menu flex px-10">
+
+      <Link href={`/category`}>
+  <div className="  bg-blue-500 text-white px-4 py-2 rounded-md">
+    All categories
+  </div>
+</Link>
+
+
+        
+<Link href={`/category/1`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
+  Clothes
+</Link>
+
+<Link href={`/category/2`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
+  Electronics
+</Link>
+
+<Link href={`/category/3`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
+  Furniture 
+</Link>
+
       </div>
       <div className="flex gap-3 w-full justify-end px-5">
         <input
