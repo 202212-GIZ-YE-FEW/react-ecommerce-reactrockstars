@@ -1,10 +1,22 @@
 import Head from 'next/head'
+import { useEffect, useState, useMemo } from 'react'
+import axios from 'axios'
 import NextNProgress from 'nextjs-progressbar'
 import Footer from './Footer'
 import Navbar from './Navbar'
 
 
 export default function Layout({ children, title }) {
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    axios.get('https://api.escuelajs.co/api/v1/categories')
+      .then(res => setCategories(res.data))
+      .catch(err => console.log(err))
+  }, [])
+
+  const memoizedCategories = useMemo(() => categories, [categories])
+
   return (
     <>
       <Head>
@@ -15,9 +27,9 @@ export default function Layout({ children, title }) {
       </Head>
       <main>
         <NextNProgress />
-        <Navbar />
+        <Navbar categories={memoizedCategories} />
         {children}
-        <Footer />
+        <Footer categories={memoizedCategories} />
       </main>
     </>
   )

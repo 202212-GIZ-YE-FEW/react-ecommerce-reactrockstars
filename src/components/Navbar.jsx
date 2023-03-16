@@ -1,17 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/dist/client/link'
-import { GOOGLE_FONT_PROVIDER } from 'next/dist/shared/lib/constants'
 
-const Navbar = () => {
+
+const Navbar = ({ categories }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [array, setArray] = useState([])
-
-  useEffect(() => {
-    fetch('https://api.escuelajs.co/api/v1/categories')
-      .then(res => res.json())
-      .then(data => setArray(data))
-  }, [console.log(array)])
 
   const handleSearchInput = event => {
     setSearchTerm(event.target.value)
@@ -29,12 +22,20 @@ const Navbar = () => {
         </svg>
       </a>
       <img className="logo" src="https://cdn.shopify.com/s/files/1/0689/1443/files/CLOSCA-LOGO-WEB-BLACK_130x@2x.png?v=1559116993" />
-      {/* <div className="header-menu">
-			<a href="#">Mask</a>
-			<a href="#">Helmet</a>
-			<a href="#">Bottle</a>
-			<a href="#">Accessories</a>
-		</div> */}
+      <div className="header-menu flex px-10">
+        <a href="#" className="transform transition-transform duration-500 ease-in-out hover:translate-x-2">
+          Mask
+        </a>
+        <a href="#" className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
+          Helmet
+        </a>
+        <a href="#" className="transform transition-transform duration-500 ease-in-out delay-200 hover:translate-x-2">
+          Bottle
+        </a>
+        <a href="#" className="transform transition-transform duration-500 ease-in-out delay-300 hover:translate-x-2">
+          Accessories
+        </a>
+      </div>
       <div className="flex gap-3 w-full justify-end px-5">
         <input
           type="text"
@@ -64,7 +65,7 @@ const Navbar = () => {
             <div
               className="absolute z-10 py-2 mt-2 overflow-auto text-sm bg-white rounded-md shadow-xl w-35 max-h-64"
               style={{ display: 'block' }}>
-              {array.map((category) => (
+              {categories.map((category) => (
                 <div key={category.id}>
                   <Link href={`/category/${category.id}`} as={`/category/${category.id}`}>
                     <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
