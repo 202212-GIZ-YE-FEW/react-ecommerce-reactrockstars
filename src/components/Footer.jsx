@@ -1,13 +1,13 @@
 import Link from 'next/link'
 
-
 const Footer = ({ categories }) => {
   return (
-    <footer className="bg-orange-400 py-8">
+    <footer className="footer py-8">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap justify-center">
           <div className="w-full max-w-xs lg:max-w-md mb-8 lg:mb-0">
             <Link href="/" className="text-2xl font-bold text-gray-800 hover:text-gray-900">
+              <img className="logo" src="https://cdn.shopify.com/s/files/1/0689/1443/files/CLOSCA-LOGO-WEB-BLACK_130x@2x.png?v=1559116993" />
               Reactrockstars Store
             </Link>
             <p className="mt-2 text-gray-600">Shop for the best products</p>

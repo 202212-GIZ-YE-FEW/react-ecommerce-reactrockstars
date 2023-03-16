@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
+import Layout from "@/components/Layout"
 
 
 function Category() {
@@ -69,6 +70,15 @@ function Category() {
         </div>
       ))}
     </div>
+  )
+}
+
+
+Category.getLayout = function getLayout(page) {
+  return (
+    <Layout title='Category'>
+      {page}
+    </Layout>
   )
 }
 export default Category
