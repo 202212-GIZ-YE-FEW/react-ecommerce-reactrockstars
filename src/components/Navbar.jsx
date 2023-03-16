@@ -1,17 +1,10 @@
-import { useEffect, useState } from 'react'
 import Link from 'next/dist/client/link'
-import { GOOGLE_FONT_PROVIDER } from 'next/dist/shared/lib/constants'
+import { useState } from 'react'
 
-const Navbar = () => {
+
+const Navbar = ({ categories }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [array, setArray] = useState([])
-
-  useEffect(() => {
-    fetch('https://api.escuelajs.co/api/v1/categories')
-      .then(res => res.json())
-      .then(data => setArray(data))
-  }, [console.log(array)])
 
   const handleSearchInput = event => {
     setSearchTerm(event.target.value)
@@ -22,13 +15,29 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="py-4 bg-blue-600 shadow-xl" style={{ backgroundColor: 'orange' }}>
+    <nav className="bg-orange-400">
       <div style={{ paddingTop: '20px', paddingBottom: '20px', background: 'linear-gradient(EB5160 5%, EB5160 20px, orange 80px)', boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1), 0px -4px 10px rgba(0, 0, 0, 0.1)' }}>
         <div className="px-6 mx-auto max-w-8xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <Link href="/" as="/">
               <div className="text-3xl font-bold text-white">Store</div>
             </Link>
+            <ul className="flex">
+              <li>
+                <Link href="/cart" legacyBehavior>
+                  <a className="flex items-center text-gray-800">
+                    <svg className="h-6 w-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v2M4 8h16M4 12h16M4 16v2"></path>
+                    </svg>
+                    <span>Cart</span>
+                  </a>
+                </Link>
+              </li>
+              <li className="ml-6">
+                <Link href="/account" className="text-gray-800">Account
+                </Link>
+              </li>
+            </ul>
             <div className="flex items-center">
               <div className="relative mr-4">
                 <input
@@ -68,7 +77,7 @@ const Navbar = () => {
                   <div
                     className="absolute z-10 py-2 mt-2 overflow-auto text-sm bg-white rounded-md shadow-xl w-35 max-h-64"
                     style={{ display: 'block' }}>
-                    {array.map((category) => (
+                    {categories.map((category) => (
                       <div key={category.id}>
                         <Link href={`/category/${category.id}`} as={`/category/${category.id}`}>
                           <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
