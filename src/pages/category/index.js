@@ -1,10 +1,11 @@
 import Link from 'next/link'
+import Layout from "@/components/Layout"
 
 
 function Home({ categories }) {
   return (
     <div className="container mx-auto">
-      <h1 className="my-8 text-3xl font-bold">Categories</h1>
+      <h1 className="my-8 text-3xl font-bold text-white">Categories</h1>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {categories.map((category) => (
           <Link key={category.id} href={`/category/${category.id}`}>
@@ -18,6 +19,14 @@ function Home({ categories }) {
         ))}
       </div>
     </div>
+  )
+}
+
+Home.getLayout = function getLayout(page) {
+  return (
+    <Layout title='Categories'>
+      {page}
+    </Layout>
   )
 }
 
