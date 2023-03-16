@@ -27,7 +27,7 @@ const Navbar = ({ categories }) => {
  </div>
 </Link> <div className="header-menu flex px-10">
 
-      <Link href={`category`}>
+      <Link href={`/category`}>
   <div className="  bg-blue-500 text-white px-4 py-2 rounded-md">
     All categories
   </div>
