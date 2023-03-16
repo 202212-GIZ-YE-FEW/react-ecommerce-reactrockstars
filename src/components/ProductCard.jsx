@@ -1,8 +1,12 @@
+import Link from 'next/dist/client/link'
+
 function ProductCard({ product }) {
     return (
-        <div key={product.id} className="w-full px-4 mb-4 sm:w-1/2 md:w-1/3 lg:w-1/4">
+        <div key={product.id} className="w-full px-4 mb-4">
             <div className="overflow-hidden bg-white rounded shadow-lg">
-                <img className="object-cover w-full h-64" src={product.images[0]} alt={product.title} />
+                <Link href={`/products/${product.id}`}>
+                    <img className="object-cover w-full h-64" src={product.images[0]} alt={product.title} />
+                </Link>
                 <div className="px-6 py-4">
                     <div className="mb-2 text-xl font-bold text-gray-900">{product.title}</div>
                     <p className="text-base text-gray-700">{product.description}</p>
@@ -13,7 +17,7 @@ function ProductCard({ product }) {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default ProductCard;
+export default ProductCard
