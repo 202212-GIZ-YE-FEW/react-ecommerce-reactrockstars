@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
+import CartProduct from './CartProduct';
 export default function Cart({ anchor, toggleDrawer }) {
     return (
         <Box
@@ -21,27 +22,22 @@ export default function Cart({ anchor, toggleDrawer }) {
                 <h1 class="mb-6 text-center text-2xl font-bold">Cart Items</h1>
                 <div class="mx-auto max-w-5xl flex flex-col px-6 h-full xl:px-0">
                     <div class="rounded-lg ">
-                        <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-                            <img src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="product-image" class="w-full rounded-lg sm:w-40" />
-                            <div class="sm:ml-4 w-full flex sm:w-full justify-between">
-                                <div class="mt-5 sm:mt-0">
-                                    <h2 class="text-gray-500">Nike Air Max 2019</h2>
-                                    <p class="mt-1 text-gray-700 text-[var(--savanna-dark)] font-bold">$99</p>
-                                </div>
-                                <div class="mt-4 flex justify-between items-end flex-col sm:flex-col sm:space-y-6 sm:mt-0 sm:space-x-6">
-                                    <Button className='text-black hover:bg-gray-100 flex justify-end pr-0'>
-                                        <DeleteOutlineRoundedIcon />
-                                    </Button>
-                                    <div class="flex items-center border-gray-100">
-                                        <span class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"> - </span>
-                                        <input class="h-8 w-8 border bg-white text-center text-xs outline-none" type="number" value="2" min="1" />
-                                        <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"> + </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <CartProduct product={{
+                            title: "Nike Air Max 2019",
+                            price: 999,
+                            id: 3,
+                            image: "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                        }}/>
+                        <CartProduct product={{
+                            title: "Nike Air Max 2019",
+                            price: 1999,
+                            id: 3,
+                            image: "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1131&q=80"
+                        }}/>
+                        
+                        
                         {/* <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-          <img src="https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1131&q=80" alt="product-image" class="w-full rounded-lg sm:w-40" />
+          <img src=" alt="product-image" class="w-full rounded-lg sm:w-40" />
           <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
             <div class="mt-5 sm:mt-0">
               <h2 class="text-lg font-bold text-gray-900">Nike Air Max 2019</h2>
