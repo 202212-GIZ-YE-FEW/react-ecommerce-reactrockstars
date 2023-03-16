@@ -75,7 +75,7 @@ function Category() {
   }
 
   return (
-    <div className="flex flex-wrap justify-start p-8">
+    <div className="grid grid-cols-6 gap-4 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-4 p-8">
       <Suspense fallback={<div>Loading...</div>}>
       {visibleProducts.map((product) => (
         <ProductCard key={product.id} product={product} />

@@ -22,31 +22,29 @@ const Navbar = ({ categories }) => {
         </svg>
       </a>
       <Link href="/">
-  <div>
-  <img className="logo" src="https://cdn.shopify.com/s/files/1/0689/1443/files/CLOSCA-LOGO-WEB-BLACK_130x@2x.png?v=1559116993" width="350" height="350" />
- </div>
-</Link> <div className="header-menu flex px-10">
-
-      <Link href={`/category`}>
-  <div className="  bg-blue-500 text-white px-4 py-2 rounded-md">
-    All categories
-  </div>
-</Link>
-
-
-        
-<Link href={`/category/1`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
-  Clothes
-</Link>
-
-<Link href={`/category/2`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
-  Electronics
-</Link>
-
-<Link href={`/category/3`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
-  Furniture 
-</Link>
-
+        <div>
+          <img className="logo" src="https://cdn.shopify.com/s/files/1/0689/1443/files/CLOSCA-LOGO-WEB-BLACK_130x@2x.png?v=1559116993" width="350" height="350" />
+        </div>
+      </Link> <div className="header-menu flex px-10">
+      <Link href={`/products`}>
+          <div className="bg-lime-500 text-white px-4 py-2 rounded-md">
+            All products
+          </div>
+        </Link>
+        <Link href={`/category`}>
+          <div className="bg-blue-500 text-white px-4 py-2 rounded-md">
+            All categories
+          </div>
+        </Link>
+        <Link href={`/category/1`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
+          Clothes
+        </Link>
+        <Link href={`/category/2`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
+          Electronics
+        </Link>
+        <Link href={`/category/3`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
+          Furniture
+        </Link>
       </div>
       <div className="flex gap-3 w-full justify-end px-5">
         <input
