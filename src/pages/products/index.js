@@ -14,7 +14,7 @@ function Home({ products }) {
 
     const loadMore = () => {
         const nextBatch = products
-            .filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()))
+            .filter(product => product.title.toLowerCase().includes(searchQuery.toLowerCase()))
             .slice(displayedProducts.length, displayedProducts.length + 12)
         setDisplayedProducts([...displayedProducts, ...nextBatch])
     }
