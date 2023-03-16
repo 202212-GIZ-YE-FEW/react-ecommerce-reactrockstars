@@ -17,6 +17,7 @@ function Category() {
         const data = await response.json()
         setProducts(data)
         setLoading(false)
+        console.log("data : ",data);
       } catch (error) {
         console.error(error)
         setLoading(false)

@@ -2,9 +2,55 @@ import Head from 'next/head'
 import NextNProgress from 'nextjs-progressbar'
 import Footer from './Footer'
 import Navbar from './Navbar'
+import MyContext from '@/contexts/MyContext';
+import React, { useState, useEffect } from 'react';
 
 
 export default function Layout({ children, title }) {
+  
+  const [products, setProducts] = useState  ([]);
+
+  useEffect(() => {
+    // Load products from browser storage on component mount
+    let savedProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
+    if(savedProducts.length > 0){
+      savedProducts = savedProducts.map((product) =>  {
+        return {...product, 'quantity': product.quantity && product.quantity>1 ? product.quantity : 1}
+       })
+    }
+    setProducts(savedProducts);
+  }, []);
+
+  useEffect(() => {
+    // Save products to browser storage whenever products state variable changes
+    localStorage.setItem('cartProducts', JSON.stringify(products));
+  }, [products]);
+
+  const addToCart = (product) => {
+    const existingProduct = products.find((p) => p.id === product.id);
+    if (existingProduct) {
+      // If product already exists, increase its quantity by 1
+      const updatedProducts = products.map((p) =>
+        p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
+      );
+      setProducts(updatedProducts);
+    } else {
+      // If product does not exist, add it with a quantity of 1
+      setProducts([...products, { ...product, quantity: 1 }]);
+    }
+  };
+
+  const removeFromCart = (product) => {
+    const updatedProducts = products.filter((p) => p.id !== product.id);
+    setProducts(updatedProducts);
+  };
+
+  const decreaseQuantity = (product) => {
+    const updatedProducts = products.map((p) =>
+      p.id === product.id && p.quantity > 1 ? { ...p, quantity: p.quantity - 1 } : p
+    );
+    setProducts(updatedProducts);
+  };
   return (
     <>
       <Head>
@@ -13,12 +59,15 @@ export default function Layout({ children, title }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <MyContext.Provider value={{ products, setProducts, addToCart, removeFromCart, decreaseQuantity }}>
+
       <main>
         <NextNProgress />
         <Navbar />
         {children}
         <Footer />
       </main>
+      </MyContext.Provider>
     </>
   )
 }
