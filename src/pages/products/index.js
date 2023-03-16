@@ -5,15 +5,32 @@ import Layout from '@/components/Layout'
 
 function Home({ products }) {
     const [displayedProducts, setDisplayedProducts] = useState(products.slice(0, 12))
+    const [searchQuery, setSearchQuery] = useState('')
+
+    const handleSearchInput = event => {
+        setSearchQuery(event.target.value)
+        setDisplayedProducts(products.filter(product => product.title.toLowerCase().includes(event.target.value.toLowerCase())).slice(0, 12))
+    }
 
     const loadMore = () => {
-        const nextBatch = products.slice(displayedProducts.length, displayedProducts.length + 12)
+        const nextBatch = products
+            .filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase()))
+            .slice(displayedProducts.length, displayedProducts.length + 12)
         setDisplayedProducts([...displayedProducts, ...nextBatch])
-    };
+    }
 
     return (
         <div className="container mx-auto">
             <h1 className="my-8 text-3xl font-bold text-black">Products</h1>
+            <div className="mb-4">
+                <input
+                    type="text"
+                    placeholder="Search products"
+                    value={searchQuery}
+                    onChange={handleSearchInput}
+                    className="w-full px-4 py-2 border border-gray-400 rounded-md"
+                />
+            </div>
             <div className="grid grid-cols-6 gap-4 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-4">
                 {displayedProducts.map((product) => (
                     <ProductCard product={product} key={product.id} />
