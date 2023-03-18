@@ -1,61 +1,71 @@
-import { useState } from 'react'
-import Link from 'next/dist/client/link'
-
+import { useEffect, useState } from 'react';
+import Link from 'next/dist/client/link';
 
 const Navbar = ({ categories }) => {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
-  const handleSearchInput = event => {
-    setSearchTerm(event.target.value)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
+
+
   const handleDropdownToggle = () => {
-    setIsDropdownOpen(!isDropdownOpen)
-  }
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+
 
   return (
-    <nav className="header px-4">
-      <a className="menu-icon" href="#">
+    <nav className="px-4 header">
+      <div className="menu-icon" href="#">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h8m-8 6h16" />
         </svg>
-      </a>
+      </div>
       <Link href="/">
   <div>
   <img className="logo" src="https://cdn.shopify.com/s/files/1/0689/1443/files/CLOSCA-LOGO-WEB-BLACK_130x@2x.png?v=1559116993" width="350" height="350" />
  </div>
-</Link> <div className="header-menu flex px-10">
+</Link> <div className="flex px-10 header-menu">
 
       <Link href={`/category`}>
-  <div className="  bg-blue-500 text-white px-4 py-2 rounded-md">
+  <div className="px-4 py-2 text-white bg-blue-500 rounded-md ">
     All categories
   </div>
 </Link>
 
 
         
-<Link href={`/category/1`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
+<Link href={`/category/1`} className="transition-transform duration-500 ease-in-out delay-100 transform hover:translate-x-2">
   Clothes
 </Link>
 
-<Link href={`/category/2`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
+<Link href={`/category/2`} className="transition-transform duration-500 ease-in-out delay-100 transform hover:translate-x-2">
   Electronics
 </Link>
 
-<Link href={`/category/3`} className="transform transition-transform duration-500 ease-in-out delay-100 hover:translate-x-2">
+<Link href={`/category/3`} className="transition-transform duration-500 ease-in-out delay-100 transform hover:translate-x-2">
   Furniture 
 </Link>
 
       </div>
-      <div className="flex gap-3 w-full justify-end px-5">
-        <input
-          type="text"
-          className="w-64 px-4 py-2 pl-10 text-gray-700 bg-blue-100 rounded-md focus:outline-none focus:ring-2 "
-          placeholder="Search products..."
-          value={searchTerm}
-          onChange={handleSearchInput}
-        />
+      <div className="flex justify-end w-full gap-3 px-5">
+      <input 
+    type="text" 
+    value={searchQuery} 
+    onChange={handleInputChange} 
+    className="px-4 py-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+    placeholder="Search products" 
+  />
+<Link href={`/search?query=${searchQuery}`}>
+  <div style={{ backgroundColor: "#F55C52" }} className="px-4 py-2 font-bold text-white rounded hover:bg-red-700">
+    Search
+  </div>
+</Link>
+
         <div className="relative">
           <button
             className="flex items-center px-3 py-2 text-white bg-[#e9bf8b] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2"
