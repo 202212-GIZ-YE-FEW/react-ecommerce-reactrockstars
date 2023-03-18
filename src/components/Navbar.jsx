@@ -26,6 +26,7 @@ const Navbar = ({ categories }) => {
         </svg>
       </div>
       <Link href="/">
+
   <div>
   <img className="logo" src="https://cdn.shopify.com/s/files/1/0689/1443/files/CLOSCA-LOGO-WEB-BLACK_130x@2x.png?v=1559116993" width="350" height="350" />
  </div>
@@ -50,6 +51,7 @@ const Navbar = ({ categories }) => {
 <Link href={`/category/3`} className="transition-transform duration-500 ease-in-out delay-100 transform hover:translate-x-2">
   Furniture 
 </Link>
+
 
       </div>
       <div className="flex justify-end w-full gap-3 px-5">
